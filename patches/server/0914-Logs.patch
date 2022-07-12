@@ -1,0 +1,20 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: PanSzelescik <panszelescik@gmail.com>
+Date: Tue, 12 Jul 2022 16:59:12 +0200
+Subject: [PATCH] Logs
+
+
+diff --git a/src/main/java/net/minecraft/network/Connection.java b/src/main/java/net/minecraft/network/Connection.java
+index 9bbf990212ee55a267d0eb1e863618c50fa706da..a765533e1669ee9536e2ae21a14764be266bbfd3 100644
+--- a/src/main/java/net/minecraft/network/Connection.java
++++ b/src/main/java/net/minecraft/network/Connection.java
+@@ -614,7 +614,8 @@ public class Connection extends SimpleChannelInboundHandler<Packet<?>> {
+         // Spigot End
+         if (this.channel.isOpen()) {
+             this.channel.close(); // We can't wait as this may be called from an event loop.
+-            this.disconnectedReason = disconnectReason;
++            new Exception().printStackTrace();
++            this.disconnectedReason = disconnectReason == null ? new net.minecraft.network.chat.TextComponent("Dyskonekted") : disconnectReason;
+         }
+ 
+     }
